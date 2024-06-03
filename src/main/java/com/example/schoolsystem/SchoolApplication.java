@@ -92,24 +92,25 @@ public class SchoolApplication {
                                 idExists = school.getAllStudents().stream().anyMatch(student -> student.getId() == id);
                                 if (!idExists) {
                                     school.addStudent(new Student(id, name));
+                                    outputArea.append("Student ID: " + id + ", Name: " + name + " added successfully.\n");
                                 }
                                 break;
                             case "Teacher":
                                 idExists = school.getAllTeachers().stream().anyMatch(teacher -> teacher.getId() == id);
                                 if (!idExists) {
                                     school.addTeacher(new Teacher(id, name));
+                                    outputArea.append("Teacher ID: " + id + ", Name: " + name + " added successfully.\n");
                                 }
                                 break;
                             case "Course":
                                 idExists = school.getAllCourses().stream().anyMatch(course -> course.getId() == id);
                                 if (!idExists) {
                                     school.addCourse(new Course(id, name));
+                                    outputArea.append("Course ID: " + id + ", Name: " + name + " added successfully.\n");
                                 }
                                 break;
                         }
-                        if (!idExists) {
-                            outputArea.append(name + " added successfully.\n");
-                        } else {
+                        if (idExists) {
                             outputArea.append("ID already exists. Please enter a unique ID.\n");
                         }
                     } catch (NumberFormatException ex) {
@@ -117,6 +118,8 @@ public class SchoolApplication {
                     }
                 }
             });
+            
+            
 
             enrollButton.addActionListener(new ActionListener() {
                 @Override
@@ -150,6 +153,7 @@ public class SchoolApplication {
                         public void actionPerformed(ActionEvent e) {
                             typeLabel.setText("Type:");
                             idField.setText("");
+                            nameField.setText("");
 
                             CourseIDLabel.setText("Course ID:");
                             CourseIDField.setText("");
