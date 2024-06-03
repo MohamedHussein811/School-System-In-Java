@@ -6,7 +6,6 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 java {
 	sourceCompatibility = '17'
@@ -20,9 +19,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-	implementation 'org.openjfx:javafx-controls:17' // JavaFX controls
-    implementation 'org.openjfx:javafx-fxml:17' // JavaFX FXML
 }
 
 tasks.named('test') {
