@@ -36,7 +36,6 @@ public class SchoolApplication {
     
                 switch (choice) {
                     case "student":
-                        // Read student details
                         System.out.print("Enter student ID: ");
                         long studentId = scanner.nextLong();
                         System.out.print("Enter student name: ");
@@ -46,7 +45,6 @@ public class SchoolApplication {
                         school.addStudent(student);
                         break;
                     case "teacher":
-                        // Read teacher details
                         System.out.print("Enter teacher ID: ");
                         long teacherId = scanner.nextLong();
                         System.out.print("Enter teacher name: ");
@@ -56,7 +54,6 @@ public class SchoolApplication {
                         school.addTeacher(teacher);
                         break;
                     case "course":
-                        // Read course details
                         System.out.print("Enter course ID: ");
                         long courseId = scanner.nextLong();
                         System.out.print("Enter course title: ");
@@ -66,13 +63,11 @@ public class SchoolApplication {
                         school.addCourse(course);
                         break;
                     case "enroll":
-                        // Perform enrollment
                         System.out.print("Enter student ID to enroll: ");
                         long enrollStudentId = scanner.nextLong();
                         System.out.print("Enter course ID to enroll the student in: ");
                         long enrollCourseId = scanner.nextLong();
     
-                        // Find student and course
                         Student enrollStudent = school.getStudentById(enrollStudentId);
                         Course enrollCourse = school.getCourseById(enrollCourseId);
     
