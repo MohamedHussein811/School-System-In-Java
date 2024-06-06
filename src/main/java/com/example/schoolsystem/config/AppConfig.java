@@ -18,17 +18,17 @@ public class AppConfig {
     }
 
     @Bean
-    public Student student(){
+    public IStudent student(){
         return new Student();
     }
 
     @Bean
-    public Teacher teacher(){
+    public ITeacher teacher(){
         return new Teacher();
     }
 
     @Bean
-    public Course course(){
+    public ICourse course(){
         return new Course();
     }
 }

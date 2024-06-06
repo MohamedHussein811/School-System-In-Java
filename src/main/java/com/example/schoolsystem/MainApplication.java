@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import com.example.schoolsystem.interfaces.ISchool;
-import com.example.schoolsystem.models.Student;
+import com.example.schoolsystem.interfaces.IStudent;
 
 @SpringBootApplication
 public class MainApplication {
@@ -23,7 +23,7 @@ public class MainApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             ISchool school = ctx.getBean(ISchool.class);
-            Student student = ctx.getBean(Student.class);
+            IStudent student = ctx.getBean(IStudent.class);
 
             JFrame frame = new JFrame("School Management System");
             frame.setSize(500, 500);
