@@ -8,4 +8,5 @@ public interface IStudent {
     void setName(String name);
     List<Course> getCourses();
     void enrollInCourse(Course course);
+    void dropCourse(Course course);
 }

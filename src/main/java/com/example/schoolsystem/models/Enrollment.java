@@ -8,6 +8,7 @@ public class Enrollment implements IEnrollment {
     public void enroll(Student student, Course course) {
         student.enrollInCourse(course);
     }
+    
 
     @Override
     public List<Course> getCoursesByStudent(Student student) {

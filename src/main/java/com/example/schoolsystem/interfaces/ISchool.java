@@ -14,4 +14,10 @@ public interface ISchool {
     void addStudent(Student student);
     void addTeacher(Teacher teacher);
     void addCourse(Course course);
+    void updateStudentName(long id, String name);
+    void updateTeacherName(long id, String name);
+    void updateCourseTitle(long id, String title);
+    void removeStudent(long id);
+    void removeTeacher(long id);
+    void removeCourse(long id);
 }

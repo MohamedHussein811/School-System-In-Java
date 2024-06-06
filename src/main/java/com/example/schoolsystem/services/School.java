@@ -71,5 +71,61 @@ public class School implements ISchool {
     public void addCourse(Course course) {
         courses.add(course);
     }
+
+    @Override
+    public void updateStudentName(long id, String name) {
+        Student student = getStudentById(id);
+        if (student != null) {
+            student.setName(name);
+        }
+    }
+
+    @Override
+    public void updateTeacherName(long id, String name) {
+        Teacher teacher = getTeacherById(id);
+        if (teacher != null) {
+            teacher.setName(name);
+        }
+    }
+
+    @Override
+    public void updateCourseTitle(long id, String title) {
+        Course course = getCourseById(id);
+        if (course != null) {
+            course.setTitle(title);
+        }
+    }
+
+    @Override
+    public void removeStudent(long id) {
+        Student student = getStudentById(id);
+        if (student != null) {
+            students.remove(student);
+        }
+    }
+
+    @Override
+    public void removeTeacher(long id) {
+        Teacher teacher = getTeacherById(id);
+        if (teacher != null) {
+            teachers.remove(teacher);
+        }
+    }
+
+    @Override
+    public void removeCourse(long id) {
+        Course course = getCourseById(id);
+    
+        if (course != null) {
+            List<Student> allStudents = new ArrayList<>(course.getStudents());
+    
+            for (Student student : allStudents) {
+                student.dropCourse(course);
+            }
+    
+            courses.remove(course);
+        }
+    }
+    
 }
 

@@ -11,4 +11,5 @@ public interface ICourse {
     void setTeacher(Teacher teacher);
     List<Student> getStudents();
     void addStudent(Student student);
+    void removeStudent(Student student);
 }

@@ -38,4 +38,11 @@ public class Student implements IStudent {
         courses.add(course);
         course.addStudent(this);
     }
+
+    @Override
+    public void dropCourse(Course course) {
+        courses.remove(course);
+        course.removeStudent(this);
+    }
+
 }

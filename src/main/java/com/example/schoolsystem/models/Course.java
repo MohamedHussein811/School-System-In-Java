@@ -49,4 +49,9 @@ public class Course implements ICourse {
     public void addStudent(Student student) {
         students.add(student);
     }
+
+    @Override
+    public void removeStudent(Student student) {
+        students.remove(student);
+    }
 }
