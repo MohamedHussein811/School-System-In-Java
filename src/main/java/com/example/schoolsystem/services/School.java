@@ -118,7 +118,12 @@ public class School implements ISchool {
     
         if (course != null) {
             List<Student> allStudents = new ArrayList<>(course.getStudents());
-    
+            Teacher teacher = course.getTeacher();
+
+            if (teacher != null) {
+                teacher.removeCourse(course);
+            }
+
             for (Student student : allStudents) {
                 student.dropCourse(course);
             }

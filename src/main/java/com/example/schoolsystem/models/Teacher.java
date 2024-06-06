@@ -38,4 +38,10 @@ public class Teacher implements ITeacher {
         courses.add(course);
         course.setTeacher(this);
     }
+
+    @Override
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        course.setTeacher(null);
+    }
 }

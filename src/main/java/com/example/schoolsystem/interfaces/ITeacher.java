@@ -9,4 +9,5 @@ public interface ITeacher {
     void setName(String name);
     List<Course> getCourses();
     void assignCourse(Course course);
+    void removeCourse(Course course);
 }

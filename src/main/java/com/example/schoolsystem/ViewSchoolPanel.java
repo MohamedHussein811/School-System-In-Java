@@ -87,9 +87,7 @@ public class ViewSchoolPanel extends JPanel {
     
         JTextField nameField = new JTextField(name);
         nameField.setPreferredSize(new Dimension(100, 30));
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.WEST; // Align to the left
+    
         entryPanel.add(nameField, gbc);
         nameField.setVisible(false);
     
@@ -102,14 +100,19 @@ public class ViewSchoolPanel extends JPanel {
     
         JLabel coursesLabel = new JLabel();
         if (courses != null) {
-            StringBuilder courseNames = new StringBuilder("Enrolled in: ");
-            for (Course course : courses) {
-                courseNames.append(course.getTitle() + course.getId()).append(", ");
+            if (courses.isEmpty()) {
+                coursesLabel.setText("Not enrolled in any courses yet.");
+                coursesLabel.setForeground(Color.RED); // Set text color to red
+            } else {
+                StringBuilder courseNames = new StringBuilder("Enrolled in: ");
+                for (Course course : courses) {
+                    courseNames.append(course.getTitle() + course.getId()).append(", ");
+                }
+                if (courseNames.length() > 12) {
+                    courseNames.setLength(courseNames.length() - 2); // remove the trailing comma and space
+                }
+                coursesLabel.setText(courseNames.toString());
             }
-            if (courseNames.length() > 12) {
-                courseNames.setLength(courseNames.length() - 2); // remove the trailing comma and space
-            }
-            coursesLabel.setText(courseNames.toString());
         }
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -122,6 +125,7 @@ public class ViewSchoolPanel extends JPanel {
             updateButton.setVisible(true);
             nameLabel.setVisible(false);
             editButton.setVisible(false);
+            removeButton.setVisible(false); // Hide remove button while editing
         });
     
         removeButton.addActionListener(e -> {
@@ -169,6 +173,7 @@ public class ViewSchoolPanel extends JPanel {
     
         return entryPanel;
     }
+    
     
     
 
