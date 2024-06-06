@@ -1,4 +1,5 @@
 package com.example.schoolsystem.models;
+import com.example.schoolsystem.interfaces.ICourse;
 import com.example.schoolsystem.interfaces.ITeacher;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +7,16 @@ import java.util.List;
 public class Teacher implements ITeacher {
     private Long id;
     private String name;
-    private List<Course> courses = new ArrayList<>();
-
-    public Teacher(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private List<ICourse> courses = new ArrayList<>();
 
     @Override
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -29,18 +30,18 @@ public class Teacher implements ITeacher {
     }
 
     @Override
-    public List<Course> getCourses() {
+    public List<ICourse> getCourses() {
         return courses;
     }
 
     @Override
-    public void assignCourse(Course course) {
+    public void assignCourse(ICourse course) {
         courses.add(course);
         course.setTeacher(this);
     }
 
     @Override
-    public void removeCourse(Course course) {
+    public void removeCourse(ICourse course) {
         courses.remove(course);
         course.setTeacher(null);
     }

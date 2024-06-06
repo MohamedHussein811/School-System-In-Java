@@ -1,35 +1,36 @@
 package com.example.schoolsystem.services;
+import com.example.schoolsystem.interfaces.ICourse;
 import com.example.schoolsystem.interfaces.ISchool;
-import com.example.schoolsystem.models.Course;
-import com.example.schoolsystem.models.Student;
-import com.example.schoolsystem.models.Teacher;
+import com.example.schoolsystem.interfaces.IStudent;
+import com.example.schoolsystem.interfaces.ITeacher;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class School implements ISchool {
-    private List<Student> students = new ArrayList<>();
-    private List<Teacher> teachers = new ArrayList<>();
-    private List<Course> courses = new ArrayList<>();
+    private List<IStudent> students = new ArrayList<>();
+    private List<ITeacher> teachers = new ArrayList<>();
+    private List<ICourse> courses = new ArrayList<>();
 
     @Override
-    public List<Student> getAllStudents() {
+    public List<IStudent> getAllStudents() {
         return students;
     }
 
     @Override
-    public List<Teacher> getAllTeachers() {
+    public List<ITeacher> getAllTeachers() {
         return teachers;
     }
 
     @Override
-    public List<Course> getAllCourses() {
+    public List<ICourse> getAllCourses() {
         return courses;
     }
 
     @Override
-    public Student getStudentById(long studentId) {
-        for (Student student : students) {
+    public IStudent getStudentById(long studentId) {
+        for (IStudent student : students) {
             if (student.getId() == studentId) {
                 return student;
             }
@@ -38,8 +39,8 @@ public class School implements ISchool {
     }
 
     @Override
-    public Teacher getTeacherById(long teacherId) {
-        for (Teacher teacher : teachers) {
+    public ITeacher getTeacherById(long teacherId) {
+        for (ITeacher teacher : teachers) {
             if (teacher.getId() == teacherId) {
                 return teacher;
             }
@@ -48,8 +49,8 @@ public class School implements ISchool {
     }
 
     @Override
-    public Course getCourseById(long courseId) {
-        for (Course course : courses) {
+    public ICourse getCourseById(long courseId) {
+        for (ICourse course : courses) {
             if (course.getId() == courseId) {
                 return course;
             }
@@ -58,23 +59,23 @@ public class School implements ISchool {
     }
 
     @Override
-    public void addStudent(Student student) {
+    public void addStudent(IStudent student) {
         students.add(student);
     }
 
     @Override
-    public void addTeacher(Teacher teacher) {
+    public void addTeacher(ITeacher teacher) {
         teachers.add(teacher);
     }
 
     @Override
-    public void addCourse(Course course) {
+    public void addCourse(ICourse course) {
         courses.add(course);
     }
 
     @Override
     public void updateStudentName(long id, String name) {
-        Student student = getStudentById(id);
+        IStudent student = getStudentById(id);
         if (student != null) {
             student.setName(name);
         }
@@ -82,7 +83,7 @@ public class School implements ISchool {
 
     @Override
     public void updateTeacherName(long id, String name) {
-        Teacher teacher = getTeacherById(id);
+        ITeacher teacher = getTeacherById(id);
         if (teacher != null) {
             teacher.setName(name);
         }
@@ -90,7 +91,7 @@ public class School implements ISchool {
 
     @Override
     public void updateCourseTitle(long id, String title) {
-        Course course = getCourseById(id);
+        ICourse course = getCourseById(id);
         if (course != null) {
             course.setTitle(title);
         }
@@ -98,7 +99,7 @@ public class School implements ISchool {
 
     @Override
     public void removeStudent(long id) {
-        Student student = getStudentById(id);
+        IStudent student = getStudentById(id);
         if (student != null) {
             students.remove(student);
         }
@@ -106,7 +107,7 @@ public class School implements ISchool {
 
     @Override
     public void removeTeacher(long id) {
-        Teacher teacher = getTeacherById(id);
+        ITeacher teacher = getTeacherById(id);
         if (teacher != null) {
             teachers.remove(teacher);
         }
@@ -114,17 +115,17 @@ public class School implements ISchool {
 
     @Override
     public void removeCourse(long id) {
-        Course course = getCourseById(id);
+        ICourse course = getCourseById(id);
     
         if (course != null) {
-            List<Student> allStudents = new ArrayList<>(course.getStudents());
-            Teacher teacher = course.getTeacher();
+            List<IStudent> allStudents = new ArrayList<>(course.getStudents());
+            ITeacher teacher = course.getTeacher();
 
             if (teacher != null) {
                 teacher.removeCourse(course);
             }
 
-            for (Student student : allStudents) {
+            for (IStudent student : allStudents) {
                 student.dropCourse(course);
             }
     

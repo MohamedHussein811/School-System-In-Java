@@ -7,22 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
-
-    @Bean
-    public IStudent student() {
-        return new Student(1L, "John Doe");
-    }
-
-    @Bean
-    public ITeacher teacher() {
-        return new Teacher(1L, "Jane Smith");
-    }
-
-    @Bean
-    public ICourse course() {
-        return new Course(1L, "Mathematics");
-    }
-
     @Bean
     public IEnrollment enrollment() {
         return new Enrollment();
@@ -31,5 +15,20 @@ public class AppConfig {
     @Bean
     public ISchool school() {
         return new School();
+    }
+
+    @Bean
+    public Student student(){
+        return new Student();
+    }
+
+    @Bean
+    public Teacher teacher(){
+        return new Teacher();
+    }
+
+    @Bean
+    public Course course(){
+        return new Course();
     }
 }

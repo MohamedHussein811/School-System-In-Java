@@ -4,10 +4,10 @@ import javax.swing.*;
 
 import org.springframework.context.ApplicationContext;
 
+import com.example.schoolsystem.interfaces.ICourse;
 import com.example.schoolsystem.interfaces.ISchool;
-import com.example.schoolsystem.models.Course;
+import com.example.schoolsystem.interfaces.IStudent;
 import com.example.schoolsystem.models.Enrollment;
-import com.example.schoolsystem.models.Student;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -47,8 +47,8 @@ public class EnrollPanel extends JPanel {
                     long studentId = Long.parseLong(studentIdField.getText());
                     long courseId = Long.parseLong(courseIdField.getText());
 
-                    Student student = school.getStudentById(studentId);
-                    Course course = school.getCourseById(courseId);
+                    IStudent student = school.getStudentById(studentId);
+                    ICourse course = school.getCourseById(courseId);
 
                     if (student != null && course != null) {
                         Enrollment enrollment = ctx.getBean(Enrollment.class);

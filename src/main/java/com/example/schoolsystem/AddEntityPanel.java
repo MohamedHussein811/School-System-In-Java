@@ -1,10 +1,13 @@
 package com.example.schoolsystem;
 
 import javax.swing.*;
+import org.springframework.context.ApplicationContext;
 
+import com.example.schoolsystem.interfaces.ICourse;
 import com.example.schoolsystem.interfaces.ISchool;
+import com.example.schoolsystem.interfaces.IStudent;
+import com.example.schoolsystem.interfaces.ITeacher;
 import com.example.schoolsystem.models.Course;
-import com.example.schoolsystem.models.Student;
 import com.example.schoolsystem.models.Teacher;
 
 import java.awt.*;
@@ -13,7 +16,7 @@ import java.awt.event.ActionListener;
 
 public class AddEntityPanel extends JPanel {
 
-    public AddEntityPanel(JFrame frame, ISchool school) {
+    public AddEntityPanel(JFrame frame, ISchool school,IStudent student,ApplicationContext ctx) {
         setLayout(new BorderLayout());
 
         JPanel inputPanel = new JPanel();
@@ -55,21 +58,31 @@ public class AddEntityPanel extends JPanel {
                         case "Student":
                             idExists = school.getAllStudents().stream().anyMatch(student -> student.getId() == id);
                             if (!idExists) {
-                                school.addStudent(new Student(id, name));
+                                student.setId(id);
+                                student.setName(name);
+
+                                school.addStudent(student);
                                 outputArea.append("Student ID: " + id + ", Name: " + name + " added successfully.\n");
                             }
                             break;
                         case "Teacher":
                             idExists = school.getAllTeachers().stream().anyMatch(teacher -> teacher.getId() == id);
+                            ITeacher teacher = ctx.getBean(Teacher.class);
                             if (!idExists) {
-                                school.addTeacher(new Teacher(id, name));
+                                teacher.setId(id);
+                                teacher.setName(name);
+                                school.addTeacher(teacher);
                                 outputArea.append("Teacher ID: " + id + ", Name: " + name + " added successfully.\n");
                             }
                             break;
                         case "Course":
                             idExists = school.getAllCourses().stream().anyMatch(course -> course.getId() == id);
+                            ICourse course = ctx.getBean(Course.class);
                             if (!idExists) {
-                                school.addCourse(new Course(id, name));
+                                course.setId(id);
+                                course.setTitle(name);
+
+                                school.addCourse(course);
                                 outputArea.append("Course ID: " + id + ", Name: " + name + " added successfully.\n");
                             }
                             break;

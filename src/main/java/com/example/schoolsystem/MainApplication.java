@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import com.example.schoolsystem.interfaces.ISchool;
+import com.example.schoolsystem.models.Student;
 
 @SpringBootApplication
 public class MainApplication {
@@ -22,6 +23,7 @@ public class MainApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             ISchool school = ctx.getBean(ISchool.class);
+            Student student = ctx.getBean(Student.class);
 
             JFrame frame = new JFrame("School Management System");
             frame.setSize(500, 500);
@@ -29,7 +31,7 @@ public class MainApplication {
             frame.setLayout(new CardLayout());
 
             MainPanel mainPanel = new MainPanel(frame, school, ctx);
-            AddEntityPanel addEntityPanel = new AddEntityPanel(frame, school);
+            AddEntityPanel addEntityPanel = new AddEntityPanel(frame, school,student,ctx);
             EnrollPanel enrollPanel = new EnrollPanel(frame, school, ctx);
             EnrollTeacher enrollTeacher = new EnrollTeacher(frame, school, ctx);
             ViewSchoolPanel viewSchool = new ViewSchoolPanel(frame, school);

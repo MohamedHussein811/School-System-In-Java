@@ -1,19 +1,16 @@
 package com.example.schoolsystem.interfaces;
-import com.example.schoolsystem.models.Course;
-import com.example.schoolsystem.models.Teacher;
-import com.example.schoolsystem.models.Student;
 import java.util.List;
 
 public interface ISchool {
-    List<Student> getAllStudents();
-    List<Teacher> getAllTeachers();
-    List<Course> getAllCourses();
-    Student getStudentById(long studentId);
-    Teacher getTeacherById(long teacherId);
-    Course getCourseById(long courseId);
-    void addStudent(Student student);
-    void addTeacher(Teacher teacher);
-    void addCourse(Course course);
+    List<IStudent> getAllStudents();
+    List<ITeacher> getAllTeachers();
+    List<ICourse> getAllCourses();
+    IStudent getStudentById(long studentId);
+    ITeacher getTeacherById(long teacherId);
+    ICourse getCourseById(long courseId);
+    void addStudent(IStudent student);
+    void addTeacher(ITeacher teacher);
+    void addCourse(ICourse course);
     void updateStudentName(long id, String name);
     void updateTeacherName(long id, String name);
     void updateCourseTitle(long id, String title);

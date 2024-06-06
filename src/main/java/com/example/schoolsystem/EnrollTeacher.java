@@ -4,9 +4,9 @@ import javax.swing.*;
 
 import org.springframework.context.ApplicationContext;
 
+import com.example.schoolsystem.interfaces.ICourse;
 import com.example.schoolsystem.interfaces.ISchool;
-import com.example.schoolsystem.models.Course;
-import com.example.schoolsystem.models.Teacher;
+import com.example.schoolsystem.interfaces.ITeacher;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,8 +46,8 @@ public class EnrollTeacher extends JPanel {
                     long teacherId = Long.parseLong(teacherIdField.getText());
                     long courseId = Long.parseLong(courseIdField.getText());
 
-                    Teacher teacher = school.getTeacherById(teacherId);
-                    Course course = school.getCourseById(courseId);
+                    ITeacher teacher = school.getTeacherById(teacherId);
+                    ICourse course = school.getCourseById(courseId);
 
                     if (teacher != null && course != null) {
                         teacher.assignCourse(course);

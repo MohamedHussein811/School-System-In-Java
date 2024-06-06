@@ -3,10 +3,10 @@ package com.example.schoolsystem;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import com.example.schoolsystem.models.Student;
-import com.example.schoolsystem.models.Teacher;
+import com.example.schoolsystem.interfaces.ICourse;
 import com.example.schoolsystem.interfaces.ISchool;
-import com.example.schoolsystem.models.Course;
+import com.example.schoolsystem.interfaces.IStudent;
+import com.example.schoolsystem.interfaces.ITeacher;
 
 public class ViewSchoolPanel extends JPanel {
 
@@ -32,23 +32,23 @@ public class ViewSchoolPanel extends JPanel {
         displayPanel.removeAll();
 
         // Display Students
-        List<Student> students = school.getAllStudents();
+        List<IStudent> students = school.getAllStudents();
         displayPanel.add(new JLabel("Students:"));
-        for (Student student : students) {
+        for (IStudent student : students) {
             displayPanel.add(createEntryPanel(student.getId(), student.getName(), "Student", student.getCourses()));
         }
 
         // Display Teachers
-        List<Teacher> teachers = school.getAllTeachers();
+        List<ITeacher> teachers = school.getAllTeachers();
         displayPanel.add(new JLabel("Teachers:"));
-        for (Teacher teacher : teachers) {
+        for (ITeacher teacher : teachers) {
             displayPanel.add(createEntryPanel(teacher.getId(), teacher.getName(), "Teacher", teacher.getCourses()));
         }
 
         // Display Courses
-        List<Course> courses = school.getAllCourses();
+        List<ICourse> courses = school.getAllCourses();
         displayPanel.add(new JLabel("Courses:"));
-        for (Course course : courses) {
+        for (ICourse course : courses) {
             displayPanel.add(createEntryPanel(course.getId(), course.getTitle(), "Course", null));
         }
 
@@ -56,7 +56,7 @@ public class ViewSchoolPanel extends JPanel {
         displayPanel.repaint();
     }
 
-    private JPanel createEntryPanel(long id, String name, String type, List<Course> courses) {
+    private JPanel createEntryPanel(long id, String name, String type, List<ICourse> courses) {
         JPanel entryPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // Add some padding between components
@@ -105,7 +105,7 @@ public class ViewSchoolPanel extends JPanel {
                 coursesLabel.setForeground(Color.RED); // Set text color to red
             } else {
                 StringBuilder courseNames = new StringBuilder("Enrolled in: ");
-                for (Course course : courses) {
+                for (ICourse course : courses) {
                     courseNames.append(course.getTitle() + course.getId()).append(", ");
                 }
                 if (courseNames.length() > 12) {

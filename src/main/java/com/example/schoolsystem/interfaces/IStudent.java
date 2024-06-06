@@ -1,12 +1,12 @@
 package com.example.schoolsystem.interfaces;
-import com.example.schoolsystem.models.Course;
 import java.util.List;
 
 public interface IStudent {
     Long getId();
     String getName();
+    void setId(Long id);
     void setName(String name);
-    List<Course> getCourses();
-    void enrollInCourse(Course course);
-    void dropCourse(Course course);
+    List<ICourse> getCourses();
+    void enrollInCourse(ICourse course);
+    void dropCourse(ICourse course);
 }
